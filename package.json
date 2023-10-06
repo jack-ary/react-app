@@ -1,0 +1,14 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "description": "React app assignment 1 for csc 307",
+  "main": "index.js",
+  
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd react-frontend && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}
