@@ -45,6 +45,47 @@ app.get('/users', (req, res) => {
     }
 });
 
+const addUser = (user) => {
+    users['users_list'].push(user);
+    return user;
+}
+
+app.post('/users', (req, res) => {
+    const userToAdd = req.body;
+    addUser(userToAdd);
+    res.send();
+});
+
+const deleteUser = (req, res) => {
+    const id = req.params.id;
+    const idx = users["users_list"].findIndex((user) => user['id'] === id);
+    if (idx === -1) {
+        res.status(404).send("User not found.");
+    } else {
+        users["users_list"].splice(idx, 1);
+        res.status(204).send(); // Sending a 204 status indicates success without any content.
+    }
+}
+
+app.delete('/users/:id', deleteUser);
+
+app.get('/users', (req, res) => {
+    const name = req.query.name;
+    const job = req.query.job;
+    let filt_users;
+    if (name != undefined){
+        let result = findUserByName(name);
+        filt_users = {users_list: result};
+    }else{
+        filt_users = users;
+    }
+    if (job!=undefined){
+        let result = findUserByJob(filt_users,job);
+        filt_users = {users_list: result};
+    }
+    res.send(filt_users);
+}); 
+
 const users = { 
     users_list : [
        { 
@@ -71,6 +112,11 @@ const users = {
           id: 'zap555', 
           name: 'Dennis',
           job: 'Bartender',
-       }
+       },
+       {
+        "id": "qwe123",
+        "job": "Zookeeper",
+        "name": "Cindy"
+       },
     ]
  }
