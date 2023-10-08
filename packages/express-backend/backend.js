@@ -47,16 +47,28 @@ app.get('/users', (req, res) => {
     }
 });
 
-const addUser = (user) => {
+function generateRandomId(length) {
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let randomId = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      randomId += charset.charAt(randomIndex);
+    }
+    return randomId;
+  }
+  
+  const addUser = (user) => {
+    const generatedId = generateRandomId(6);
+    user['id'] = generatedId;
     users['users_list'].push(user);
-    return user;
-}
-
-app.post('/users', (req, res) => {
+    return generatedId;
+  }
+  
+  app.post('/users', (req, res) => {
     const userToAdd = req.body;
-    addUser(userToAdd);
-    res.send();
-});
+    let userId = addUser(userToAdd);
+    res.status(201).send({ id: userId });
+  });
 
 const deleteUser = (req, res) => {
     const id = req.params.id;
