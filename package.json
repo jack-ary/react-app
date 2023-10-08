@@ -9,6 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd react-frontend && npm start"
   },
+  "workspaces": [
+	  "packages/*"
+  ],
   "author": "",
   "license": "ISC"
 }

@@ -1,13 +1,14 @@
-// src/index.js
-import React from "react";
-import ReactDOMClient from "react-dom/client";
-import MyApp from "./MyApp";
-import "./index.css";
+import express from "express";
 
-const container = document.getElementById("root");
+const app = express();
+const port = 8000;
 
-// Create a root
-const root = ReactDOMClient.createRoot(container);
+app.use(express.json());
 
-// Initial render:
-root.render(<MyApp />);
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
