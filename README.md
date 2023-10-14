@@ -1,4 +1,4 @@
-# React app for CSC 307
+# React app for CSC 307 - Kubiak
 
 Helpful Note from the professor: Typically, you use npm run dev while coding your backend, and npm start will be used when you want to run your app in the production environment.
 
@@ -16,6 +16,12 @@ in order to test api calls,routes,execution,responses, etc. curl can be helpful.
  ```console
 @yourComputer/express-backend:~$ curl -X DELETE http://localhost:8000/users/ppp222
 ```
+## Unit testing
+Go to jest-unit-testing folder
+
+```console
+$ npm run -w . test
+```
 
 ## Mongo DB notes
 
@@ -32,12 +38,12 @@ Open Mongo shell
 ```console
 mongosh
 ```
+Check what brew services are running
+```console
+brew services list
+```
 Stop the mongo service
 ```console
 brew services stop mongodb-community@6.0
 ```
 
-Check what brew services are running
-```console
-brew services list
-```
