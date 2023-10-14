@@ -16,3 +16,28 @@ in order to test api calls,routes,execution,responses, etc. curl can be helpful.
  ```console
 @yourComputer/express-backend:~$ curl -X DELETE http://localhost:8000/users/ppp222
 ```
+
+## Mongo DB notes
+
+Start Mongo DB service
+```console
+$ brew services start mongodb-community
+```
+OR to run specific version
+```console
+$ brew services start mongodb-community@6.0
+```
+
+Open Mongo shell
+```console
+mongosh
+```
+Stop the mongo service
+```console
+brew services stop mongodb-community@6.0
+```
+
+Check what brew services are running
+```console
+brew services list
+```
