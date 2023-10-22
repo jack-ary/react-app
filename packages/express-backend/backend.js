@@ -64,10 +64,16 @@ function generateRandomId(length) {
     return generatedId;
   }
   
+//   app.post('/users', (req, res) => {
+//     const userToAdd = req.body;
+//     let userId = addUser(userToAdd);
+//     res.status(201).send({ id: userId });
+//   });
+
   app.post('/users', (req, res) => {
     const userToAdd = req.body;
     let userId = addUser(userToAdd);
-    res.status(201).send({ id: userId });
+    res.status(201).send({ newUser: userToAdd });
   });
 
 const deleteUser = (req, res) => {

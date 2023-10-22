@@ -42,7 +42,7 @@ function MyApp() {
     postUser(person)
       .then((response) => response.json()) // Parse the response JSON.
       .then((data) => {
-        const generatedId = data.id; // Get the actual id generated on the server.
+        const generatedId = data.newUser.id; // Get the actual id generated on the server.
         person.id = generatedId; // Set the id in the client data.
         setCharacters([...characters, person]);
       })

@@ -47,3 +47,67 @@ Stop the mongo service
 brew services stop mongodb-community@6.0
 ```
 
+### DB Commands
+Create a DB called users
+```console
+use users
+```
+Show current collections
+```console
+show collections
+```
+Insert an entry
+```console
+db.collection_name.insert({"name":"Charlie", "job":"Janitor"})
+```
+Show all entries in collection
+```console
+db.collection_name.find({})
+```
+Find entries with a given property - This can return multiple entries
+```console
+db.collection_name.find({ name: "Charlie" })
+```
+Find the first entry with a given property
+```console
+db.collection_name.fineOne({ name: "Charlie" })
+```
+Find entries with multiple given properties - similar to above
+```console
+db.collection_name.find({ name: "Charlie", job: "Janitor" })
+
+db.collection_name.fineOne({ name: "Charlie", job: "Janitor" })
+```
+Delete operation - This behavior is becuase id must be of the correct type for deletion
+```console
+const ObjectId = ObjectId("id_to_delete");
+
+db.collection_name.deleteOne({ _id: ObjectId })
+```
+Update a user
+```console
+// Define the filter (query) to find the user you want to update
+const filter = { _id: ObjectId("653556e5250a64f0b70a6129") }; // Replace with the actual ObjectId of the user
+
+// Define the update with the new data you want to set
+const update = {
+  $set: {
+    name: "NewName", // New name value
+    job: "NewJob",   // New job value
+    // Add more fields to update here if needed
+  }
+};
+
+// Use updateOne to update the user
+db.users_list.updateOne(filter, update, function(err, result) {
+    if (err) {
+        print("Error while updating user: " + err);
+    } else {
+        print("User updated successfully");
+    }
+});
+```
+Create a new collection
+```console
+db.createCollection("mynewcollection")
+```
