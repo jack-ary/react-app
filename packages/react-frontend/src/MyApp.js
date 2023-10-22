@@ -9,13 +9,13 @@ function MyApp() {
   function removeOneCharacter(index) {
     const characterToDelete = characters[index];
   
-    if (!characterToDelete || !characterToDelete.id) {
+    if (!characterToDelete || !characterToDelete._id) {
       console.log(index);
       console.error(characterToDelete);
       return;
     }
   
-    fetch(`http://localhost:8000/users/${characterToDelete.id}`, {
+    fetch(`http://localhost:8000/users/${characterToDelete._id}`, {
       method: 'DELETE',
     })
       .then((response) => {
@@ -42,8 +42,8 @@ function MyApp() {
     postUser(person)
       .then((response) => response.json()) // Parse the response JSON.
       .then((data) => {
-        const generatedId = data.newUser.id; // Get the actual id generated on the server.
-        person.id = generatedId; // Set the id in the client data.
+        const generatedId = data._id; // Get the actual id generated on the server.
+        person._id = generatedId; // Set the id in the client data.
         setCharacters([...characters, person]);
       })
       .catch((error) => {
